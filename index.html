@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+
+body{
+  background:radial-gradient(circle at top,#3a005f,#000);
+  color:white;
+  overflow:hidden;
+}
+
+/* COMMON */
+.screen{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hidden{display:none}
+
+button{
+  margin-top:25px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ff7ad9,#9b5cff);
+  color:white;
+  font-size:18px;
+  box-shadow:0 0 20px #ff7ad9;
+}
+#welcome{
+  cursor:pointer;
+}
+
+/* HEARTS */
+.heart{
+  position:absolute;
+  color:#ff6fae;
+  animation:float 10s linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  50%{opacity:1}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* CONFETTI */
+.confetti{
+  position:absolute;
+  font-size:20px;
+  animation:confettiFall 2s linear forwards;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:translateY(120vh) rotate(360deg);opacity:0}
+}
+
+/* COUNTDOWN */
+.count{
+  font-size:5rem;
+  animation:pulse 1s infinite;
+}
+@keyframes pulse{
+  50%{transform:scale(1.3)}
+}
+
+.glow{
+  color:#ff7ad9;
+  text-shadow:0 0 15px #ff7ad9;
+  margin-top:15px;
+}
+
+/* CAKE */
+.cake{
+  position:relative;
+  width:230px;
+  height:210px;
+}
+
+/* Move "Make a Wish" up */
+.screen h2{
+  margin-bottom: 35px;   /* space between text and cake */
+  margin-top: -30px;    /* moves text upward */
+}
+
+/* Cake layers */
+.layer{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(#ffd1dc,#ff9eb5);
+  box-shadow:0 8px 0 #ff7fa2;
+  overflow:hidden;
+}
+
+.layer.bottom{
+  width:210px;
+  height:75px;
+  bottom:30px;
+  border-radius:20px;
+}
+
+.layer.top{
+  width:165px;
+  height:60px;
+  bottom:95px;
+  border-radius:22px;
+}
+
+/* Icing drip */
+.layer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:18px;
+  background:#fff0f5;
+  border-radius:0 0 20px 20px;
+}
+
+/* Decorative dots */
+.layer::after{
+  content:"";
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  width:100%;
+  height:10px;
+  background:
+    radial-gradient(circle,#ff6fae 4px,transparent 5px) 0 0/30px 10px;
+}
+
+.plate{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:240px;
+  height:20px;
+  background:#e0e0e0;
+  border-radius:50%;
+}
+
+/* Candle */
+.candle{
+  position:absolute;
+  width:14px;
+  height:50px;
+  background:linear-gradient(#fff,#ffd1dc);
+  left:50%;
+  bottom:155px;
+  transform:translateX(-50%);
+  border-radius:7px;
+}
+
+.flame{
+  position:absolute;
+  width:18px;
+  height:25px;
+  top:-25px;
+  left:-2px;
+  background:radial-gradient(circle at 50% 30%,#fff,#ffb300,#ff6a00);
+  border-radius:50%;
+  display:none;
+  box-shadow:0 0 20px 8px rgba(255,170,0,0.8);
+  animation:flicker 0.9s infinite alternate;
+}
+
+@keyframes flicker{
+  0%{transform:scale(1) rotate(-1deg)}
+  50%{transform:scale(1.1) rotate(1deg)}
+  100%{transform:scale(1) rotate(-1deg)}
+}
+
+/* PHOTOS */
+.photo{
+  max-width:80%;
+  border-radius:18px;
+  box-shadow:0 0 25px pink;
+}
+
+.photo-text{
+  margin-bottom:15px;
+  font-size:1.8rem;
+}
+
+/* FINAL PAGE FIX */
+#finalScreen{
+  background:radial-gradient(circle at top,#3a005f,#000);
+}
+
+/* Make a Wish + 19 years text positioning */
+#wishGroup{
+  margin-top: -35px;
+}
+
+.screen h2{
+  margin-bottom: 5px;   /* brings subtitle closer */
+}
+
+.wish-sub{
+  margin-top: 0;
+  margin-bottom: 35px;  /* space before candle */
+  font-size: 1rem;
+  color: #ffb3ec;
+}
+
+/* Fade-in animation for birthday text */
+.fade-in-text{
+  opacity: 0;
+  animation: fadeInUp 2.5s ease forwards;
+}
+
+@keyframes fadeInUp{
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Photo fade + zoom */
+.photo-animate{
+  opacity: 0;
+  transform: scale(0.95);
+  animation: photoFade 1.5s ease forwards;
+}
+
+@keyframes photoFade{
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Photo text animation */
+.photo-text-animate{
+  opacity: 0;
+  transform: translateY(15px);
+  animation: textFade 1.8s ease forwards;
+}
+
+@keyframes textFade{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating hearts -->
+<script>
+for(let i=0;i<15;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💕";
+  h.style.left=Math.random()*100+"%";
+  h.style.animationDuration=(10+Math.random()*10)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<!-- WELCOME -->
+<div id="welcome" class="screen">
+  <h1 class="glow">✨ Here we go… ✨</h1>
+<p class="glow">27 June — the day you were born ✨</p>
+  <p style="margin-top:20px;color:#ffb3ec">
+    Tap anywhere to begin
+  </p>
+</div>
+
+<!-- COUNTDOWN -->
+<div id="countdown" class="screen">
+  <div class="count" id="count">3</div>
+  <div class="glow">Crafting your special moment…</div>
+</div>
+
+<!-- GREETING -->
+<div id="greet" class="screen hidden">
+  <h1>🎉 A Cutiepie was born 19 years ago today 🎉</h1>
+  <p class="glow">Yes, it’s YOU!</p>
+  <button onclick="showCake()">🎁 Start the Surprise</button>
+</div>
+
+<!-- CAKE -->
+<div id="cakeScreen" class="screen hidden">
+  <div id="wishGroup">
+  <h2>🎂 Make a Wish</h2>
+  <p class="wish-sub">19 years of smiles, kindness, and magic 💫</p>
+</div>
+  <div class="cake">
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+    <div class="layer top"></div>
+    <div class="layer bottom"></div>
+    <div class="plate"></div>
+  </div>
+  <button onclick="lightCandle()">🔥 Light the Candle</button>
+</div>
+
+<!-- MESSAGE -->
+<div id="message" class="screen hidden">
+  <h1 class="glow fade-in-text" style="animation-delay:0.5s">
+  Happy Birthday, NOUSHYY 🎉
+</h1>
+ <p class="fade-in-text" style="max-width:85%;margin-top:20px;line-height:1.6" animation-delay: 0s;>
+   My love,<br><br>
+Your smile, your dimples, and your eyes make my heart feel calm and happy.
+My ponneeee, the way you smile can turn even the simplest moment into something special and unforgettable.
+Your eyes are full of kindness and warmth — my heart understands them without any words.
+Being with you feels like home.<br><br>
+On your special day, I wish you endless happiness, peace, and a life as beautiful as the feelings you bring into my heart.
+Always stay you. ✨🌸
+  </p>
+  <button onclick="showPhotos()">📸 See Memories</button>
+</div>
+
+<!-- PHOTOS -->
+<div id="photos" class="screen hidden" onclick="nextPhoto()">
+  <h2 id="photoText" class="photo-text glow photo-text-animate">shuttumaniyee 🌝</h2>
+  <img id="img" class="photo photo-animate" src="photos/photo1.jpg">
+  <div class="tap">Tap anywhere for next photo</div>
+</div>
+
+<!-- FINAL PAGE -->
+<div id="finalScreen" class="screen hidden">
+  <h1 class="glow">Thank You ❤️</h1>
+  <p style="max-width:85%;margin-top:20px;line-height:1.6">
+    Thank you for watching this little surprise till the end.
+    I hope this brought a smile to your face and warmth to your heart.
+    You mean a lot to me, always. 🌸✨
+  </p>
+  <button onclick="restart()">🔁 Restart Surprise</button>
+</div>
+
+<script>
+const countdown=document.getElementById("countdown");
+const greet=document.getElementById("greet");
+const cakeScreen=document.getElementById("cakeScreen");
+const message=document.getElementById("message");
+const photos=document.getElementById("photos");
+const finalScreen=document.getElementById("finalScreen");
+const flame=document.getElementById("flame");
+const img=document.getElementById("img");
+const photoText=document.getElementById("photoText");
+
+let c = 3;
+let counter;
+
+function runCountdown(){
+  document.getElementById("count").innerText = c;
+  c--;
+  if(c < 0){
+    clearInterval(counter);
+    countdown.classList.add("hidden");
+    greet.classList.remove("hidden");
+  }
+}
+
+const welcome = document.getElementById("welcome");
+
+welcome.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.6;   // 🔉 adjust volume (0.1 – 1)
+  music.play().catch(()=>{});
+
+  welcome.classList.add("hidden");
+  countdown.classList.remove("hidden");
+
+  c = 3;
+  document.getElementById("count").innerText = "3";
+  counter = setInterval(runCountdown, 1000);
+});
+
+function showCake(){
+  greet.classList.add("hidden");
+  cakeScreen.classList.remove("hidden");
+}
+
+function lightCandle(){
+  flame.style.display="block";
+  confettiBurst();
+  setTimeout(()=>{
+    cakeScreen.classList.add("hidden");
+    message.classList.remove("hidden");
+  },1800);
+}
+
+const photoTexts=[
+  "shuttumaniyee🌝",
+  "Ponneee😚",
+  "nte Nousyee🫂",
+  "Happy Birthday and I love you ponneee ❤️"
+];
+
+let i=0;
+
+function showPhotos(){
+  message.classList.add("hidden");
+  photos.classList.remove("hidden");
+  i=0;
+  img.src="photos/photo1.jpg";
+  photoText.innerText=photoTexts[0];
+}
+
+function nextPhoto(){
+  i++;
+
+  // if all photos are done → go to final page
+  if(i >= photoTexts.length){
+    photos.classList.add("hidden");
+    finalScreen.classList.remove("hidden");
+    return;
+  }
+
+  // reset animation
+  img.classList.remove("photo-animate");
+  photoText.classList.remove("photo-text-animate");
+  void img.offsetWidth;
+
+  img.src = "photos/photo" + (i + 1) + ".jpg";
+  photoText.innerText = photoTexts[i];
+
+  img.classList.add("photo-animate");
+  photoText.classList.add("photo-text-animate");
+}
+
+function confettiBurst(){
+  const emojis = ["🎉","🎊","✨","💖","💫","❤️"];
+  
+  for(let i = 0; i < 40; i++){
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // Random position & movement
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.top = "-10vh";
+    c.style.fontSize = (14 + Math.random() * 14) + "px";
+    c.style.animationDuration = (2 + Math.random() * 2) + "s";
+    c.style.animationDelay = Math.random() * 0.5 + "s";
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    document.body.appendChild(c);
+
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+
+function restart(){
+  const music = document.getElementById("bgMusic");
+  music.pause();
+  music.currentTime = 0;
+
+  finalScreen.classList.add("hidden");
+  photos.classList.add("hidden");
+  message.classList.add("hidden");
+  cakeScreen.classList.add("hidden");
+  greet.classList.add("hidden");
+
+  flame.style.display = "none";
+
+  i = 0;
+  c = 3;
+  document.getElementById("count").innerText = "3";
+
+  welcome.classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
