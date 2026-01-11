@@ -419,7 +419,7 @@ function showPhotos(){
   message.classList.add("hidden");
   photos.classList.remove("hidden");
   i=0;
-  img.src="photos/photo1.jpg";
+  img.src="photo1.jpg";
   photoText.innerText=photoTexts[0];
 }
 
@@ -438,7 +438,7 @@ function nextPhoto(){
   photoText.classList.remove("photo-text-animate");
   void img.offsetWidth;
 
-  img.src = "photos/photo" + (i + 1) + ".jpg";
+  img.src = "photo" + (i + 1) + ".jpg";
   photoText.innerText = photoTexts[i];
 
   img.classList.add("photo-animate");
