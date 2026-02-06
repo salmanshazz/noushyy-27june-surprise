@@ -116,72 +116,98 @@ button{
   50%{transform:scale(1.1)}
 }
 
-/* CAKE */
+/* ===== NEW CAKE DESIGN ===== */
+
 .cake {
   position: relative;
-  width: 230px;
-  height: 240px; /* more breathing space */
+  width: 240px;
+  height: 280px;
+  margin: 30px auto;
 }
 
-.layer{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  background:linear-gradient(#ffd1dc,#ff9eb5);
-  box-shadow:0 8px 0 #ff7fa2;
+.cake-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 85px;
+  background: linear-gradient(#ffb6c9, #ff8fb3);
+  border-radius: 30px;
+  box-shadow: inset 0 -6px 0 #ff6f9e;
 }
 
-.layer.bottom{
-  width:210px;
-  height:80px;
-  bottom:28px;
-  border-radius:22px;
+.cake-middle {
+  position: absolute;
+  bottom: 115px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 70px;
+  background: linear-gradient(#ffd1dc, #ff9eb5);
+  border-radius: 28px;
+  box-shadow: inset 0 -5px 0 #ff7fa2;
 }
 
-.layer.top{
-  width:165px;
-  height:65px;
-  bottom:118px; /* lifted higher */
-  border-radius:22px;
+.cake-top {
+  position: absolute;
+  bottom: 185px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 55px;
+  background: linear-gradient(#ffe4ec, #ffb6c9);
+  border-radius: 26px;
+  box-shadow: inset 0 -4px 0 #ff9eb5;
 }
 
-.layer::before{
-  content:"";
-  position:absolute;
-  top:0;
-  width:100%;
-  height:14px;
-  background:#fff0f5;
-  border-radius:0 0 20px 20px;
+.cake-top::after,
+.cake-middle::after,
+.cake-bottom::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: #fff0f5;
+  border-radius: 0 0 18px 18px;
 }
 
-.plate{
-  position:absolute;
-  bottom:0;
-  width:240px;
-  height:20px;
-  background:#e0e0e0;
-  border-radius:50%;
-  left:50%;
-  transform:translateX(-50%);
+.plate {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  height: 22px;
+  background: #e6e6e6;
+  border-radius: 50%;
 }
 
-.candle{
-  position:absolute;
-  width:14px;
-  height:50px;
-  background:linear-gradient(#fff,#ffd1dc);
-  bottom:168px;
-  left:50%;
-  transform:translateX(-50%);
+.candle {
+  position: absolute;
+  bottom: 235px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 55px;
+  background: linear-gradient(#fff, #ffd1dc);
+  border-radius: 8px;
 }
 
-.flame{
-  position:absolute;
-  width:18px;
-  height:25px;
-  top:-25px;
-  left:-2px;
+.flame {
+  position: absolute;
+  top: -28px;
+  left: -4px;
+  width: 24px;
+  height: 32px;
+  background: radial-gradient(circle at 50% 30%, #fff, #ffcc33, #ff6a00);
+  border-radius: 50%;
+  display: none;
+  box-shadow: 0 0 25px 10px rgba(255, 170, 0, 0.8);
+  animation: flicker 1.2s infinite;
+}
   background:radial-gradient(circle,#fff,#ffb300,#ff6a00);
   border-radius:50%;
   display:none;
@@ -265,11 +291,16 @@ for(let i=0;i<15;i++){
   </div>
 
   <div class="cake">
-    <div class="candle"><div class="flame" id="flame"></div></div>
-    <div class="layer top"></div>
-    <div class="layer bottom"></div>
-    <div class="plate"></div>
+  <div class="candle">
+    <div class="flame" id="flame"></div>
   </div>
+
+  <div class="cake-top"></div>
+  <div class="cake-middle"></div>
+  <div class="cake-bottom"></div>
+
+  <div class="plate"></div>
+</div>
 
   <button onclick="lightCandle()">🔥 Light the Candle</button>
 </div>
