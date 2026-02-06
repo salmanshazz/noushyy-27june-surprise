@@ -15,13 +15,20 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 
-body{
-  background:linear-gradient(-45deg,#1a0b2e,#3a005f,#0f0c29,#240b36);
-  background-size:400% 400%;
-  animation:gradientBG 15s ease infinite;
-  font-family:'Poppins',sans-serif;
-  color:white;
-  overflow:hidden;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #1a0b2e, #3a005f, #0f0c29, #240b36);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+  overflow-x: hidden;
 }
 
 @keyframes gradientBG{
