@@ -5,7 +5,7 @@
 <title>Happy Birthday NOUSHYY 🎂</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -15,29 +15,23 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+body{
+  min-height:100vh;
+  background:linear-gradient(-45deg,#1a0b2e,#3a005f,#0f0c29,#240b36);
+  background-size:400% 400%;
+  animation:bg 15s ease infinite;
+  color:#fff;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(-45deg, #1a0b2e, #3a005f, #0f0c29, #240b36);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color: white;
-  overflow-x: hidden;
-}
-
-@keyframes gradientBG{
+@keyframes bg{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-/* COMMON */
+/* SCREENS */
 .screen{
   position:absolute;
   inset:0;
@@ -47,7 +41,6 @@ body {
   align-items:center;
   transition:.8s;
 }
-
 .hidden{
   opacity:0;
   pointer-events:none;
@@ -59,10 +52,10 @@ body {
   backdrop-filter:blur(10px);
   border-radius:25px;
   padding:30px;
-  max-width:90%;
-  width:420px;
+  width:90%;
+  max-width:420px;
   text-align:center;
-  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  box-shadow:0 10px 35px rgba(0,0,0,.4);
 }
 
 h1,h2{
@@ -76,8 +69,9 @@ button{
   border:none;
   border-radius:50px;
   background:linear-gradient(45deg,var(--primary),var(--secondary));
-  color:white;
-  font-weight:700;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
   cursor:pointer;
 }
 
@@ -86,7 +80,7 @@ button{
   position:fixed;
   top:20px;
   right:20px;
-  font-size:20px;
+  font-size:22px;
   cursor:pointer;
   z-index:1000;
 }
@@ -95,11 +89,10 @@ button{
 .heart{
   position:absolute;
   color:var(--primary);
-  animation:floatUp 15s linear infinite;
+  animation:float 15s linear infinite;
   opacity:0;
 }
-
-@keyframes floatUp{
+@keyframes float{
   0%{transform:translateY(100vh);opacity:0}
   20%{opacity:.8}
   100%{transform:translateY(-10vh);opacity:0}
@@ -111,136 +104,135 @@ button{
   font-family:'Dancing Script';
   animation:pulse 1s infinite;
 }
+@keyframes pulse{50%{transform:scale(1.1)}}
 
-@keyframes pulse{
-  50%{transform:scale(1.1)}
+/* ================= CAKE ================= */
+
+.cake{
+  position:relative;
+  width:230px;
+  height:210px;
 }
 
-/* ===== NEW CAKE DESIGN ===== */
-
-.cake {
-  position: relative;
-  width: 240px;
-  height: 280px;
-  margin: 30px auto;
+/* move text up */
+#cakeScreen h2{
+  margin-top:-30px;
+  margin-bottom:35px;
 }
 
-.cake-bottom {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  height: 85px;
-  background: linear-gradient(#ffb6c9, #ff8fb3);
-  border-radius: 30px;
-  box-shadow: inset 0 -6px 0 #ff6f9e;
+/* layers */
+.layer{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(#ffd1dc,#ff9eb5);
+  box-shadow:0 8px 0 #ff7fa2;
+  overflow:hidden;
 }
 
-.cake-middle {
-  position: absolute;
-  bottom: 115px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 70px;
-  background: linear-gradient(#ffd1dc, #ff9eb5);
-  border-radius: 28px;
-  box-shadow: inset 0 -5px 0 #ff7fa2;
+.layer.bottom{
+  width:210px;
+  height:75px;
+  bottom:30px;
+  border-radius:20px;
 }
 
-.cake-top {
-  position: absolute;
-  bottom: 185px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 140px;
-  height: 55px;
-  background: linear-gradient(#ffe4ec, #ffb6c9);
-  border-radius: 26px;
-  box-shadow: inset 0 -4px 0 #ff9eb5;
+.layer.top{
+  width:165px;
+  height:60px;
+  bottom:95px;
+  border-radius:22px;
 }
 
-.cake-top::after,
-.cake-middle::after,
-.cake-bottom::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 14px;
-  background: #fff0f5;
-  border-radius: 0 0 18px 18px;
+/* icing */
+.layer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:18px;
+  background:#fff0f5;
+  border-radius:0 0 20px 20px;
 }
 
-.plate {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 22px;
-  background: #e6e6e6;
-  border-radius: 50%;
+/* dots */
+.layer::after{
+  content:"";
+  position:absolute;
+  bottom:15px;
+  left:15px;
+  width:100%;
+  height:10px;
+  background:radial-gradient(circle,#ff6fae 4px,transparent 5px) 0 0/30px 10px;
 }
 
-.candle {
-  position: absolute;
-  bottom: 235px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 55px;
-  background: linear-gradient(#fff, #ffd1dc);
-  border-radius: 8px;
+.plate{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:240px;
+  height:20px;
+  background:#e0e0e0;
+  border-radius:50%;
 }
 
-.flame {
-  position: absolute;
-  top: -28px;
-  left: -4px;
-  width: 24px;
-  height: 32px;
-  background: radial-gradient(circle at 50% 30%, #fff, #ffcc33, #ff6a00);
-  border-radius: 50%;
-  display: none;
-  box-shadow: 0 0 25px 10px rgba(255, 170, 0, 0.8);
-  animation: flicker 1.2s infinite;
+/* candle */
+.candle{
+  position:absolute;
+  width:14px;
+  height:50px;
+  background:linear-gradient(#fff,#ffd1dc);
+  left:50%;
+  bottom:155px;
+  transform:translateX(-50%);
+  border-radius:7px;
 }
-  background:radial-gradient(circle,#fff,#ffb300,#ff6a00);
+
+.flame{
+  position:absolute;
+  width:18px;
+  height:25px;
+  top:-25px;
+  left:-2px;
+  background:radial-gradient(circle at 50% 30%,#fff,#ffb300,#ff6a00);
   border-radius:50%;
   display:none;
+  box-shadow:0 0 20px 8px rgba(255,170,0,.8);
   animation:flicker .9s infinite;
-  box-shadow:0 0 20px orange;
 }
-
 @keyframes flicker{
   50%{transform:scale(1.1)}
 }
 
-/* PHOTOS */
+/* ================= PHOTOS ================= */
+
 .polaroid{
-  background:white;
+  position:relative;
+  background:#fff;
   padding:15px 15px 50px;
   max-width:85%;
+  border-radius:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
   transform:rotate(-3deg);
-  transition:.5s;
+  transition:.4s;
 }
 
 .polaroid img{
   width:100%;
   display:block;
+  border-radius:4px;
 }
 
 .polaroid-caption{
   position:absolute;
   bottom:10px;
   width:100%;
-  font-family:'Dancing Script';
-  color:#333;
-  font-size:1.6rem;
   text-align:center;
+  font-family:'Dancing Script';
+  font-size:1.6rem;
+  color:#333;
 }
 </style>
 </head>
@@ -252,7 +244,7 @@ button{
 
 <script>
 for(let i=0;i<15;i++){
-  let h=document.createElement("div");
+  const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="💕";
   h.style.left=Math.random()*100+"%";
@@ -278,29 +270,24 @@ for(let i=0;i<15;i++){
 <!-- GREET -->
 <div id="greet" class="screen hidden">
   <div class="card">
-    <h1>🎉 A Cutiepie was born<br>19 years ago today 🎉</h1>
+    <h1>🎉 A Cutiepie was born<br>19 years ago 🎉</h1>
     <button onclick="showCake()">🎁 Open Surprise</button>
   </div>
 </div>
 
 <!-- CAKE -->
-<div id="cake" class="screen hidden">
+<div id="cakeScreen" class="screen hidden">
   <div class="card">
     <h2>🎂 Make a Wish</h2>
     <p>19 years of smiles, kindness, and magic 💫</p>
   </div>
 
   <div class="cake">
-  <div class="candle">
-    <div class="flame" id="flame"></div>
+    <div class="candle"><div class="flame" id="flame"></div></div>
+    <div class="layer top"></div>
+    <div class="layer bottom"></div>
+    <div class="plate"></div>
   </div>
-
-  <div class="cake-top"></div>
-  <div class="cake-middle"></div>
-  <div class="cake-bottom"></div>
-
-  <div class="plate"></div>
-</div>
 
   <button onclick="lightCandle()">🔥 Light the Candle</button>
 </div>
@@ -310,7 +297,7 @@ for(let i=0;i<15;i++){
   <div class="card">
     <h1>Happy Birthday, NOUSHYY 🎉</h1>
     <p style="margin-top:15px">
-      My love, your smile makes my heart feel calm and happy.<br><br>
+      My love, your smile makes my heart calm.<br><br>
       Being with you feels like home.<br><br>
       Always stay you ✨🌸
     </p>
@@ -320,10 +307,11 @@ for(let i=0;i<15;i++){
 
 <!-- PHOTOS -->
 <div id="photos" class="screen hidden" onclick="nextPhoto()">
-  <div class="polaroid" id="polaroid">
+  <div class="polaroid">
     <img id="photo" src="photo1.jpg">
     <div id="caption" class="polaroid-caption">shuttumaniyee 🌝</div>
   </div>
+  <p style="margin-top:15px;font-size:13px;opacity:.7">Tap photo</p>
 </div>
 
 <!-- FINAL -->
@@ -337,7 +325,7 @@ for(let i=0;i<15;i++){
 
 <script>
 const screens={
-  welcome, countdown, greet, cake, message, photos, final
+  welcome, countdown, greet, cakeScreen, message, photos, final
 };
 
 const music=document.getElementById("music");
@@ -350,11 +338,7 @@ welcome.onclick=()=>{
 };
 
 function toggleMusic(){
-  if(music.paused){
-    music.play(); playing=true;
-  }else{
-    music.pause(); playing=false;
-  }
+  if(music.paused){music.play()}else{music.pause()}
 }
 
 function switchScreen(hide,show){
@@ -364,24 +348,21 @@ function switchScreen(hide,show){
 
 function startCountdown(){
   let c=3;
-  const el=document.getElementById("count");
+  const el=count;
   const t=setInterval(()=>{
-    el.textContent=c;
-    c--;
-    if(c<0){
-      clearInterval(t);
-      switchScreen("countdown","greet");
-    }
+    el.textContent=c--;
+    if(c<0){clearInterval(t);switchScreen("countdown","greet")}
   },1000);
 }
 
-function showCake(){ switchScreen("greet","cake"); }
+function showCake(){switchScreen("greet","cakeScreen")}
 
 function lightCandle(){
   flame.style.display="block";
-  setTimeout(()=>switchScreen("cake","message"),2500);
+  setTimeout(()=>switchScreen("cakeScreen","message"),2000);
 }
 
+/* PHOTOS LOGIC */
 const texts=[
  "shuttumaniyee 🌝",
  "Ponneee 😚",
@@ -391,13 +372,10 @@ const texts=[
 let i=0;
 
 function showPhotos(){
+  i=0;
+  photo.src="photo1.jpg";
+  caption.textContent=texts[0];
   switchScreen("message","photos");
-  updatePhoto();
-}
-
-function updatePhoto(){
-  photo.src="photo"+(i+1)+".jpg";
-  caption.textContent=texts[i];
 }
 
 function nextPhoto(){
@@ -406,16 +384,18 @@ function nextPhoto(){
     switchScreen("photos","final");
     return;
   }
-  updatePhoto();
+  photo.src="photo"+(i+1)+".jpg";
+  caption.textContent=texts[i];
 }
 
 function restart(){
   i=0;
   flame.style.display="none";
   Object.values(screens).forEach(s=>s.classList.add("hidden"));
-  screens.welcome.classList.remove("hidden");
+  welcome.classList.remove("hidden");
   music.pause(); music.currentTime=0;
 }
 </script>
+
 </body>
 </html>
